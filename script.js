@@ -61,7 +61,10 @@ console.log(saveButtonEl)
 
 
 containerEl.on("click", ".saveBtn", function(event) {
-console.log($(event.target).parent().children().eq(1).val());
+  var textInput = []
+  textInput[0] = $(event.target).siblings().eq(1).val();
+  localStorage.setItem("textInput", JSON.stringify([textInput]));
+
 
 })
 
