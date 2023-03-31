@@ -11,26 +11,16 @@ Provide a short description explaining the what, why, and how of your project. U
 
 ## Table of Contents (Optional)
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
+This is a web app in progress to keep track of daily commitments for a 9-5 schedule. It provides a current date at the top, as well as an clock to keep track of what time it is. It also adjusts the color of each hour block to help identify which hours have passed (grey), are current (red) or are in the future (green).
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-## Installation
-
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+To use this app, use the text field in each hour block to record commitments or activities. Use the save button to the right of each hour block to save that hours activities. When you refresh the page, the commitments you made should still be there. The following screenshot illustrates what the webpage may look like.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![screenshot of webpage](./images/workschedule.png)
+
 
 ## Credits
 
@@ -38,4 +28,4 @@ I referred to [this stackoverflow](https://stackoverflow.com/questions/19635077/
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+Standard MIT License.
