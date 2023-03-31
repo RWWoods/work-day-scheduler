@@ -37,13 +37,27 @@ $(function () {
   setInterval(displayTime, 1000);
 
   var hourBlocks = document.getElementsByClassName("row time-block");
-  var currentHour = dayjs().format('H');
-  // console.log(currentHour);
+  // var currentHour = dayjs().format('H');
+  var currentHour = 13
   var hourArray = [9, 10, 11, 12, 13, 14, 15, 16, 17]
   var x = -1;
 
+  var containerEl = $(".container-lg");
+
+  var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+  if (existingEntries == null) existingEntries = [];
+  console.log(hourBlocks[0].children[1]);
+
+  containerEl.on("click", ".saveBtn", function (event) {
+    var allEntries = []
+    entryText = $(event.target).siblings().eq(1).val();
+    localStorage.setItem("entryText", JSON.stringify(entryText));
+    existingEntries.push(entryText);
+    localStorage.setItem("allEntries", JSON.stringify(existingEntries))
+  })
+
   for (let i = 0; i < hourBlocks.length; i++) {
-    // var currentBlock = hourBlocks[i];
+
     x++
     if (currentHour > hourArray[x]) {
       hourBlocks[x].setAttribute("class", "row time-block past");
@@ -52,59 +66,15 @@ $(function () {
     } else {
       hourBlocks[x].setAttribute("class", "row time-block future");
     }
-
   }
 
-  var saveButtonEl = $(".saveBtn");
-  var containerEl = $(".container-lg");
-  // console.log(hourBlocks)
-
-
-
-
-  containerEl.on("click", ".saveBtn", function (event) {
-
-
-    var allEntries = []
-    entryText = $(event.target).siblings().eq(1).val();
-    var parent = $(event.target).parent();
-    var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
-    if (existingEntries == null) existingEntries = [];
-    for (let j = 0; j < hourBlocks.length; j++) {
-      var hour = hourBlocks[j];
-      if (entryText === " ") {
-        return;
-      } else if (hour == parent[0]) {
-        localStorage.setItem("entryText", JSON.stringify(entryText));
-        existingEntries.push(entryText);
-        localStorage.setItem("allEntries", JSON.stringify(existingEntries))
-      }
-
-
+  for (let k = 0; k < hourBlocks.length; k++) {
+    // y++
+    if (existingEntries[k] != null) {
+      hourBlocks[k].children[1].innerHTML = existingEntries[k];
+    } else {
+      return;
     }
-
-
-    // var test = $(event.target).parent();
-    // console.log(test[0]);
-    // console.log(hourBlocks[0])
-
-  })
-
-
+  }
 });
 
-// function addEntry() {
-//   // Parse any JSON previously stored in allEntries
-//   var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
-//   if(existingEntries == null) existingEntries = [];
-//   var entryTitle = document.getElementById("entryTitle").value;
-//   var entryText = document.getElementById("entryText").value;
-//   var entry = {
-//       "title": entryTitle,
-//       "text": entryText
-//   };
-//   localStorage.setItem("entry", JSON.stringify(entry));
-//   // Save allEntries back to local storage
-//   existingEntries.push(entry);
-//   localStorage.setItem("allEntries", JSON.stringify(existingEntries));
-// };
